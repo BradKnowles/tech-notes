@@ -1,0 +1,2 @@
+containerd is an open source component overseen by the [[Cloud Native
+Computing Foundation]], and the specification for running containers is open and public; it’s called the Open Container Initiative (OCI)
