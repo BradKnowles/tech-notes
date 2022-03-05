@@ -1,4 +1,11 @@
+---
+tags: [docker,diamol]
+---
+
+source: [[Docker in a Month of Lunches]]
+
 # Building your own Docker images
+[[Docker in a Month of Lunches]]
 
 ## 3.1 - Using a container image from Docker Hub
 
@@ -11,7 +18,7 @@ PS C:\Users\Brad> docker image pull <strong>diamol/ch03-web-ping</strong>
 Using default tag: latest
 latest: Pulling from diamol/ch03-web-ping
 
-<em># One image is phsycally stored as many layers</em>
+<em># One image is physically stored as many layers</em>
 <strong>e7c96db7181b: Pull complete
 bbec46749066: Pull complete
 89e5cf82282d: Pull complete

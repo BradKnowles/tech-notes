@@ -1,8 +1,10 @@
 ---
-tags: [docker]
+tags: [docker,diamol]
 ---
 
-[[Docker in a Month of Lunches]]
+source: [[Docker in a Month of Lunches]]
+
+# Understanding Docker and running Hello World
 
 ## 2.1 - Running Hello World in a container
 
