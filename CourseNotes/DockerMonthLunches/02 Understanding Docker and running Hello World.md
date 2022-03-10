@@ -49,17 +49,13 @@ inet addr:172.17.0.2 Bcast:172.17.255.255 Mask:255.255.0.0
 
 A box with an app inside it.
 
-It has its own **machine name** and **IP address**, and it also has its own **disk drive**
-(Windows containers have their own Windows Registry too)
+It has its own **machine name** and **IP address**, and it also has its own **disk drive** (Windows containers have their own Windows Registry too)
 
 **The application inside the box can’t see anything outside the box**
 
-Why is this so important? It fixes two conflicting problems in computing: **isolation** and
-**density**. Density means running as many applications on your computers as possible,
-to utilize all the processor and memory that you have.
+Why is this so important? It fixes two conflicting problems in computing: **isolation** and **density**. Density means running as many applications on your computers as possible, to utilize all the processor and memory that you have. Isolation keeps applications separate.  Some apps or runtime tools might conflict with each other, even apps depending on different versions of the same framework.  Containers mitigate this by only bundling what is necessary for that specific app and keeping them separate from any other container running on the system.
 
-Containers give you both. Each container shares the operating system of the computer running the container, and that makes them extremely lightweight. Containers
-start quickly and run lean, so you can run many more containers than VMs on the same hardware
+Containers give you both. Each container shares the operating system of the computer running the container, and that makes them extremely lightweight. Containers start quickly and run lean, so you can run many more containers than VMs on the same hardware
 
 ## 2.3 - Connecting to a container like a remote computer
 ```powershell
@@ -170,4 +166,4 @@ The Docker command-line interface (CLI) is a client of the Docker API. When you 
 
 > The only way to interact with the Docker Engine is through the API.
 
-The Docker Engine uses a component called [[containerd]] to actually manage containers, and containerd in turn makes use of operating system features to create the virtual environment that is the container. 
+The Docker Engine uses a component called [[containerd]] to actually manage containers, and containerd in turn makes use of operating system features to create the virtual environment that is the container.
