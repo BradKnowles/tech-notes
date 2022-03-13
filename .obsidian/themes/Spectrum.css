@@ -1,12 +1,9 @@
 @charset "UTF-8";
 /*
-* Tested with Obsidian v0.12.19
-*
 * Author: Wiktoria Mielcarek (Braweria) 
 * Name: Spectrum 
 * Licence: MIT 
 * GitHub Repo: https://github.com/Braweria/Spectrum 
-* Version: 1.1.2
 
 ! CONTENT
 *.............1. Variables
@@ -55,12 +52,75 @@
 
 *............100. Other People's Plugins
 *................. Daily Planner
+*................. Icon Shortcode
+*................. Obsidian Charts
+*................. DataView
+*................. Style Settings
 
 */
 /*
 *..........................1. Variables */
+:root {
+  /* Sizes */
+  --font-size-xs: 0.78em;
+  /* 12px */
+  --font-size-sm: 0.875em;
+  /* 14px */
+  --font-size-base: 1em;
+  /* 16px */
+  --font-size-lg: 1.125em;
+  /* 18px */
+  --font-size-xl: 1.25em;
+  /* 20px */
+  --font-size-2xl: 1.5em;
+  /* 24px */
+  --font-size-3xl: 1.875em;
+  /* 30px */
+  --size-0-5: 0.125em;
+  /* 2px */
+  --size-1: 0.25em;
+  /* 4px */
+  --size-1-5: 0.375em;
+  /* 6px */
+  --size-2: 0.5em;
+  /* 8px */
+  --size-2-5: 0.625em;
+  /* 10px */
+  --size-3: 0.75em;
+  /* 12px */
+  --size-3-5: 0.875em;
+  /* 14px */
+  --size-4: 1em;
+  /* 16px */
+  --size-5: 1.25em;
+  /* 20px */
+  --size-6: 1.5em;
+  /* 24px */
+  --size-7: 1.75em;
+  /* 28px */
+  --size-8: 2em;
+  /* 32px */
+  --size-12: 3em;
+  /* 48px */
+  --size-16: 4em;
+  /* 64px */
+  --size-24: 6em;
+  /* 96px */
+  --size-32: 8em;
+  /* 128px */
+  --size-48: 12em;
+  /* 192px */
+  --size-64: 16em;
+  /* 256px */
+  --size-96: 24em;
+  /* 384px */
+  --size-128: 32em;
+  /* 512px */
+}
+
 :root,
 .theme-dark {
+  /* Colors */
   --main-node-rgb: 255, 190, 0;
   --main-node: rgb(var(--main-node-rgb));
   --main-node-hover-rgb: 254, 106, 38;
@@ -111,6 +171,7 @@
 
 :root,
 .theme-light {
+  /* Colors */
   --main-background: #f5f5f5;
   --secondary-background: #e2e2e2;
   --secondary-background-low-opacity: #e2e2e254;
@@ -169,27 +230,35 @@ body {
   max-width: 750px;
 }
 
-.markdown-preview-view.is-readable-line-width .markdown-preview-sizer {
+.markdown-preview-view.is-readable-line-width .markdown-preview-sizer,
+.markdown-source-view.mod-cm6.is-readable-line-width:not(.is-rtl)
+.cm-contentContainer {
   max-width: 100%;
-}
-
-.markdown-preview-view.is-readable-line-width .markdown-preview-sizer > div:not(.breadcrumbs-trail-grid) {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.markdown-preview-view.is-readable-line-width .markdown-preview-sizer > div:not(.breadcrumbs-trail-grid) > *:not(iframe),
-.markdown-preview-view.is-readable-line-width .markdown-preview-sizer > div:not(.breadcrumbs-trail-grid) .frontmatter-container,
-.markdown-preview-view.is-readable-line-width .markdown-preview-sizer > div:not(.breadcrumbs-trail-grid) .block-language-tasks {
+.markdown-preview-view.is-readable-line-width .markdown-preview-sizer > *:not(iframe),
+.markdown-preview-view.is-readable-line-width .markdown-preview-sizer .frontmatter-container,
+.markdown-preview-view.is-readable-line-width .markdown-preview-sizer .block-language-tasks,
+.markdown-source-view.mod-cm6.is-readable-line-width:not(.is-rtl)
+.cm-contentContainer > *:not(iframe),
+.markdown-source-view.mod-cm6.is-readable-line-width:not(.is-rtl)
+.cm-contentContainer .frontmatter-container,
+.markdown-source-view.mod-cm6.is-readable-line-width:not(.is-rtl)
+.cm-contentContainer .block-language-tasks {
   max-width: 750px;
   width: 100%;
   min-width: 300px;
 }
 
-.markdown-preview-view.is-readable-line-width .markdown-preview-sizer > div:not(.breadcrumbs-trail-grid) > table,
-.markdown-preview-view.is-readable-line-width .markdown-preview-sizer > div:not(.breadcrumbs-trail-grid) > .mermaid,
-.markdown-preview-view.is-readable-line-width .markdown-preview-sizer > div:not(.breadcrumbs-trail-grid) > div {
+.markdown-preview-view.is-readable-line-width .markdown-preview-sizer > table,
+.markdown-preview-view.is-readable-line-width .markdown-preview-sizer > .mermaid,
+.markdown-source-view.mod-cm6.is-readable-line-width:not(.is-rtl)
+.cm-contentContainer > table,
+.markdown-source-view.mod-cm6.is-readable-line-width:not(.is-rtl)
+.cm-contentContainer > .mermaid {
   max-width: fit-content;
   min-width: 750px;
 }
@@ -198,8 +267,7 @@ body {
 *..........................3. Text Decorations */
 .cm-s-obsidian .cm-strong,
 strong {
-  color: #57e28d;
-  color: var(--accent-4);
+  color: var(--accent-1);
   font-weight: 900;
 }
 
@@ -266,7 +334,7 @@ a.external-link[href*='youtube.com']::before {
   background-repeat: no-repeat;
   display: inline-block;
   position: absolute;
-  top: 4px;
+  top: var(--size-1);
   left: -1.3rem;
   height: 1rem;
   width: 1rem;
@@ -283,7 +351,7 @@ a.external-link[href*='linkedin.com']::before {
   background-repeat: no-repeat;
   display: inline-block;
   position: absolute;
-  top: 4px;
+  top: var(--size-1);
   left: -1.3rem;
   height: 1rem;
   width: 1rem;
@@ -300,7 +368,7 @@ a.external-link[href*='github'] {
   background-repeat: no-repeat;
   display: inline-block;
   position: absolute;
-  top: 4px;
+  top: var(--size-1);
   left: -1.3rem;
   height: 1rem;
   width: 1rem;
@@ -312,7 +380,7 @@ a.external-link[href*='github'] {
   background-repeat: no-repeat;
   display: inline-block;
   position: absolute;
-  top: 4px;
+  top: var(--size-1);
   left: -1.3rem;
   height: 1rem;
   width: 1rem;
@@ -329,7 +397,7 @@ a.external-link[href*='twitter']::before {
   background-repeat: no-repeat;
   display: inline-block;
   position: absolute;
-  top: 4px;
+  top: var(--size-1);
   left: -1.3rem;
   height: 1rem;
   width: 1rem;
@@ -346,7 +414,7 @@ a.external-link[href*='reddit']::before {
   background-repeat: no-repeat;
   display: inline-block;
   position: absolute;
-  top: 4px;
+  top: var(--size-1);
   left: -1.3rem;
   height: 1rem;
   width: 1rem;
@@ -363,7 +431,7 @@ a.external-link[href*='facebook']::before {
   background-repeat: no-repeat;
   display: inline-block;
   position: absolute;
-  top: 4px;
+  top: var(--size-1);
   left: -1.3rem;
   height: 1rem;
   width: 1rem;
@@ -380,7 +448,7 @@ a.external-link[href*='patreon']::before {
   background-repeat: no-repeat;
   display: inline-block;
   position: absolute;
-  top: 4px;
+  top: var(--size-1);
   left: -1.3rem;
   height: 1rem;
   width: 1rem;
@@ -397,7 +465,7 @@ a.external-link[href*='wikipedia'] {
   background-repeat: no-repeat;
   display: inline-block;
   position: absolute;
-  top: 4px;
+  top: var(--size-1);
   left: -1.3rem;
   height: 1rem;
   width: 1rem;
@@ -409,7 +477,7 @@ a.external-link[href*='wikipedia'] {
   background-repeat: no-repeat;
   display: inline-block;
   position: absolute;
-  top: 4px;
+  top: var(--size-1);
   left: -1.3rem;
   height: 1rem;
   width: 1rem;
@@ -426,7 +494,7 @@ a.external-link[href*='instagram']::before {
   background-repeat: no-repeat;
   display: inline-block;
   position: absolute;
-  top: 4px;
+  top: var(--size-1);
   left: -1.3rem;
   height: 1rem;
   width: 1rem;
@@ -443,7 +511,7 @@ a.external-link[href*='deviantart']::before {
   background-repeat: no-repeat;
   display: inline-block;
   position: absolute;
-  top: 4px;
+  top: var(--size-1);
   left: -1.3rem;
   height: 1rem;
   width: 1rem;
@@ -460,7 +528,7 @@ a.external-link[href*='medium'] {
   background-repeat: no-repeat;
   display: inline-block;
   position: absolute;
-  top: 4px;
+  top: var(--size-1);
   left: -1.3rem;
   height: 1rem;
   width: 1rem;
@@ -472,7 +540,7 @@ a.external-link[href*='medium'] {
   background-repeat: no-repeat;
   display: inline-block;
   position: absolute;
-  top: 4px;
+  top: var(--size-1);
   left: -1.3rem;
   height: 1rem;
   width: 1rem;
@@ -489,7 +557,7 @@ a.external-link[href*='stackoverflow']::before {
   background-repeat: no-repeat;
   display: inline-block;
   position: absolute;
-  top: 4px;
+  top: var(--size-1);
   left: -1.3rem;
   height: 1rem;
   width: 1rem;
@@ -506,7 +574,7 @@ a.external-link[href*='steam']::before {
   background-repeat: no-repeat;
   display: inline-block;
   position: absolute;
-  top: 4px;
+  top: var(--size-1);
   left: -1.3rem;
   height: 1rem;
   width: 1rem;
@@ -523,7 +591,7 @@ a.external-link[href*='dev.to']::before {
   background-repeat: no-repeat;
   display: inline-block;
   position: absolute;
-  top: 4px;
+  top: var(--size-1);
   left: -1.3rem;
   height: 1rem;
   width: 1rem;
@@ -535,7 +603,7 @@ a.external-link[href*='dev.to']::before {
   background-repeat: no-repeat;
   display: inline-block;
   position: absolute;
-  top: 4px;
+  top: var(--size-1);
   left: -1.3rem;
   height: 1rem;
   width: 1rem;
@@ -554,7 +622,7 @@ a.external-link[href*='developer.mozilla.org']::before {
   background-repeat: no-repeat;
   display: inline-block;
   position: absolute;
-  top: 4px;
+  top: var(--size-1);
   left: -1.3rem;
   height: 1rem;
   width: 1rem;
@@ -567,7 +635,7 @@ a.external-link[href*='developer.mozilla.org']::before {
   background-repeat: no-repeat;
   display: inline-block;
   position: absolute;
-  top: 4px;
+  top: var(--size-1);
   left: -1.3rem;
   height: 1rem;
   width: 1rem;
@@ -584,7 +652,7 @@ a.external-link[href*='reactjs.org']::before {
   background-repeat: no-repeat;
   display: inline-block;
   position: absolute;
-  top: 4px;
+  top: var(--size-1);
   left: -1.3rem;
   height: 1rem;
   width: 1rem;
@@ -732,7 +800,7 @@ h5 {
 }
 
 .workspace-tab-header-container {
-  padding-top: 10px;
+  padding-top: var(--size-2-5);
   height: auto;
 }
 
@@ -752,8 +820,10 @@ path {
   border-top-left-radius: 0;
 }
 
-.workspace-split.mod-root > .workspace-leaf:first-of-type:last-of-type .view-header {
-  border-bottom: 2px solid var(--main-node);
+.workspace-split.mod-root
+> .workspace-leaf:first-of-type:last-of-type
+.view-header {
+  border-bottom: var(--size-0-5) solid var(--main-node);
 }
 
 .titlebar-inner {
@@ -765,7 +835,7 @@ path {
 }
 
 ::-webkit-scrollbar {
-  width: 2px;
+  width: var(--size-0-5);
   background-color: var(--main-background);
 }
 
@@ -786,8 +856,8 @@ path {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 15.43 12' height='13px'%3E%3Cpath style='fill:%23999999' d='M6.15,1a.67.67,0,0,1,.5.21L8.22,2.78a2.69,2.69,0,0,0,1.92.79h3.57a.72.72,0,0,1,.72.72v6a.71.71,0,0,1-.72.71h-12A.71.71,0,0,1,1,10.29V1.71A.71.71,0,0,1,1.71,1H6.15m0-1H1.71A1.72,1.72,0,0,0,0,1.71v8.58A1.72,1.72,0,0,0,1.71,12h12a1.72,1.72,0,0,0,1.72-1.71v-6a1.72,1.72,0,0,0-1.72-1.72H10.14a1.7,1.7,0,0,1-1.21-.5L7.36.5A1.72,1.72,0,0,0,6.15,0Z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   display: inline-block;
-  width: 24px;
-  height: 15px;
+  width: var(--size-7);
+  height: var(--size-4);
 }
 
 .nav-folder .nav-folder-title .nav-folder-title-content::before {
@@ -795,8 +865,8 @@ path {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18.12 12' height='13px'%3E%3Cpath style='fill:%23999999' d='M16.11,4H16a1.76,1.76,0,0,0-1.75-1.43H10.51a1.8,1.8,0,0,1-1.25-.5L7.63.5A1.8,1.8,0,0,0,6.37,0H1.78A1.75,1.75,0,0,0,0,1.71v8.58A1.75,1.75,0,0,0,1.78,12H14.61a2,2,0,0,0,1.88-1.3l1.5-4A2,2,0,0,0,16.11,4ZM1,1.71A.75.75,0,0,1,1.78,1H6.37a.83.83,0,0,1,.57.22L8.56,2.79a2.83,2.83,0,0,0,1.95.78h3.71a.78.78,0,0,1,.71.43H4.39A2,2,0,0,0,2.51,5.3L1,9.3a.06.06,0,0,0,0,0ZM17.05,6.35,16,9.15l-.45,1.2a1,1,0,0,1-.94.65H2.89a1,1,0,0,1-.83-.43A1,1,0,0,1,2,9.65l1.5-4A1,1,0,0,1,4.39,5H16.11a1,1,0,0,1,.83.43A1,1,0,0,1,17.05,6.35Z'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   display: inline-block;
-  width: 24px;
-  height: 13px;
+  width: var(--size-7);
+  height: var(--size-4);
 }
 
 .dropdown {
@@ -920,7 +990,7 @@ table tbody tr:hover {
 *..........................7. Embed Notes */
 .internal-embed.is-loaded:not(.image-embed) {
   border: 1px solid black;
-  border-radius: 10px;
+  border-radius: var(--size-2-5);
 }
 
 .internal-embed.is-loaded .markdown-embed {
@@ -932,7 +1002,7 @@ table tbody tr:hover {
 .progress-bar-subline {
   position: absolute;
   background-color: var(--main-node);
-  height: 8px;
+  height: var(--size-2);
 }
 
 .progress-bar-line {
@@ -940,7 +1010,7 @@ table tbody tr:hover {
   opacity: 0.4;
   background-color: #ffbf007c;
   width: 150%;
-  height: 8px;
+  height: var(--size-2);
 }
 
 /*
@@ -965,7 +1035,7 @@ table tbody tr:hover {
 *..........................10. Listings */
 :root {
   --list-padding-num: 2.5;
-  --list-padding: 24px;
+  --list-padding: var(--size-6);
   --list-marker-num: 1.5;
   --list-marker: 1.5rem;
 }
@@ -997,7 +1067,7 @@ ol::before {
 
 ul li,
 ol li {
-  margin-bottom: 10px;
+  margin-bottom: var(--size-2-5);
   position: relative;
 }
 
@@ -1015,35 +1085,38 @@ li::marker,
   margin: 0;
 }
 
-.markdown-preview-view ul > li.task-list-item.is-checked {
+.view-content ul > li.task-list-item.is-checked {
   text-decoration: none;
 }
 
-.markdown-preview-view .task-list-item-checkbox {
+.view-content .task-list-item-checkbox {
   appearance: none;
   box-sizing: border-box;
   border: 1px solid var(--text-muted);
-  border-radius: 2px;
+  border-radius: var(--size-0-5);
   position: relative;
   width: 1.5em;
   height: 1.5em;
   margin: 0;
   outline: none;
-  margin-right: 4px;
-  margin-bottom: 2px;
+  margin-right: var(--size-1);
+  margin-bottom: var(--size-0-5);
   cursor: pointer;
-  vertical-align: baseline;
   filter: none;
-  top: 6px;
-  left: -0.5rem;
+  top: var(--size-1-5);
 }
 
-.markdown-preview-view .task-list-item-checkbox:checked {
+.markdown-source-view.mod-cm6 .task-list-item-checkbox {
+  vertical-align: baseline;
+}
+
+.view-content .task-list-item-checkbox:checked {
   border: none;
   background-color: var(--main-node);
 }
 
-.markdown-preview-view li .task-list-item-checkbox:checked::before {
+.view-content li .task-list-item-checkbox:checked::before,
+.view-content .HyperMD-list-line .task-list-item-checkbox:checked::before {
   content: '';
   position: absolute;
   bottom: 0;
@@ -1059,57 +1132,64 @@ li::marker,
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M7.74,15.63a1.45,1.45,0,0,1-1.06-.44L2.94,11.46A1.5,1.5,0,0,1,5.06,9.34L7.74,12l7.2-7.2a1.5,1.5,0,1,1,2.12,2.12L8.8,15.19A1.48,1.48,0,0,1,7.74,15.63Z' style='fill:%230c0c0c'/%3E%3C/svg%3E");
 }
 
-.markdown-preview-view li li .task-list-item-checkbox:checked {
+.markdown-source-view.mod-cm6
+.HyperMD-task-line[data-task]:not([data-task=' ']) {
+  text-decoration: none;
+  color: inherit;
+}
+
+li[data-line='2'] .task-list-item-checkbox:checked,
+.HyperMD-list-line-2 .task-list-item-checkbox:checked {
   background-color: var(--accent-1);
 }
 
-.markdown-preview-view li li li .task-list-item-checkbox:checked {
+li[data-line='3'] .task-list-item-checkbox:checked,
+.HyperMD-list-line-3 .task-list-item-checkbox:checked {
   background-color: var(--accent-2);
 }
 
-.markdown-preview-view li li li li .task-list-item-checkbox:checked {
+li[data-line='4'] .task-list-item-checkbox:checked,
+.HyperMD-list-line-4 .task-list-item-checkbox:checked {
   background-color: var(--accent-3);
 }
 
-.markdown-preview-view li li li li li .task-list-item-checkbox:checked {
+li[data-line='5'] .task-list-item-checkbox:checked,
+.HyperMD-list-line-5 .task-list-item-checkbox:checked {
   background-color: var(--accent-4);
 }
 
-.markdown-preview-view li li li li li li .task-list-item-checkbox:checked {
+li[data-line='6'] .task-list-item-checkbox:checked,
+.HyperMD-list-line-6 .task-list-item-checkbox:checked {
   background-color: var(--accent-5);
 }
 
-.markdown-preview-view li li li li li li li .task-list-item-checkbox:checked {
+li[data-line='7'] .task-list-item-checkbox:checked,
+.HyperMD-list-line-7 .task-list-item-checkbox:checked {
   background-color: var(--accent-6);
 }
 
-.markdown-preview-view
-li[data-task='!']
-.task-list-item-checkbox:checked::before {
+.view-content li[data-task='!'] .task-list-item-checkbox:checked::before,
+.view-content .task-list-item-checkbox[data-task='!']:checked::before {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M10,2.5A1.54,1.54,0,0,0,8.45,4.05v7.49a1.55,1.55,0,1,0,3.1,0V4.05A1.54,1.54,0,0,0,10,2.5Z' style='fill:%230c0c0c'/%3E%3Ccircle cx='10' cy='15.95' r='1.55' style='fill:%230c0c0c'/%3E%3C/svg%3E");
 }
 
-.markdown-preview-view
-li[data-task='?']
-.task-list-item-checkbox:checked::before {
+.view-content li[data-task='?'] .task-list-item-checkbox:checked::before,
+.view-content .task-list-item-checkbox[data-task='?']:checked::before {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Ccircle cx='8.68' cy='15.95' r='1.55' style='fill:%230c0c0c'/%3E%3Cpath d='M10.41,2.5H7.13a1.55,1.55,0,0,0,0,3.1h3.28a.91.91,0,1,1,0,1.81H8.68A1.56,1.56,0,0,0,7.13,9v2.57a1.56,1.56,0,1,0,3.11,0v-1h.17a4,4,0,0,0,0-8Z' style='fill:%230c0c0c'/%3E%3C/svg%3E");
 }
 
-.markdown-preview-view
-li[data-task='>']
-.task-list-item-checkbox:checked::before {
+.view-content li[data-task='>'] .task-list-item-checkbox:checked::before,
+.view-content .task-list-item-checkbox[data-task='>']:checked::before {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M14.06,8.94l-6-6A1.5,1.5,0,0,0,5.94,5.06L10.88,10,5.94,14.94a1.49,1.49,0,0,0,0,2.12,1.5,1.5,0,0,0,2.12,0l6-6A1.49,1.49,0,0,0,14.06,8.94Z' style='fill:%230c0c0c'/%3E%3C/svg%3E");
 }
 
-.markdown-preview-view
-li[data-task='+']
-.task-list-item-checkbox:checked::before {
+.view-content li[data-task='+'] .task-list-item-checkbox:checked::before,
+.view-content .task-list-item-checkbox[data-task='+']:checked::before {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M15.84,8.5H11.5V4.16a1.5,1.5,0,0,0-3,0V8.5H4.16a1.5,1.5,0,0,0,0,3H8.5v4.34a1.5,1.5,0,0,0,3,0V11.5h4.34a1.5,1.5,0,0,0,0-3Z' style='fill:%230c0c0c'/%3E%3C/svg%3E");
 }
 
-.markdown-preview-view
-li[data-task='-']
-.task-list-item-checkbox:checked::before {
+.view-content li[data-task='-'] .task-list-item-checkbox:checked::before,
+.view-content .task-list-item-checkbox[data-task='-']:checked::before {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M15.84,11.5H4.16a1.5,1.5,0,0,1,0-3H15.84a1.5,1.5,0,0,1,0,3Z' style='fill:%230c0c0c'/%3E%3C/svg%3E");
 }
 
@@ -1129,8 +1209,8 @@ Credit to github.com/nothingislost for the inspiration of the "subway line list"
   content: '';
   position: absolute;
   left: 0;
-  border-right: 2px solid red;
-  height: calc(100% - (1.5 * var(--editor-font-size)) / 2 - 10px);
+  border-right: var(--size-0-5) solid red;
+  height: calc(100% - (1.5 * var(--editor-font-size)) / 2 - var(--size-2-5));
   box-sizing: border-box;
   top: calc((1.5 * var(--editor-font-size)) / 2);
 }
@@ -1155,7 +1235,7 @@ Credit to github.com/nothingislost for the inspiration of the "subway line list"
   content: '';
   position: absolute;
   left: calc(0px - (2 * var(--list-padding)));
-  border-top: 2px solid red;
+  border-top: var(--size-0-5) solid red;
   height: calc(1.5 * 17.33px);
   width: var(--list-padding);
   top: calc((1.5 * var(--editor-font-size)) / 2);
@@ -1357,8 +1437,8 @@ Credit to github.com/nothingislost for the inspiration of the "subway line list"
   content: '';
   position: absolute;
   left: 0;
-  border-right: 2px solid red;
-  height: calc(100% - (1.5 * var(--editor-font-size)) / 2 - 10px);
+  border-right: var(--size-0-5) solid red;
+  height: calc(100% - (1.5 * var(--editor-font-size)) / 2 - var(--size-2-5));
   box-sizing: border-box;
   top: calc((1.5 * var(--editor-font-size)) / 2);
 }
@@ -1516,12 +1596,26 @@ Credit to github.com/nothingislost for the inspiration of the "subway line list"
   border-radius: 5px;
 }
 
+.markdown-source-view.mod-cm6.is-live-preview .HyperMD-quote {
+  border-color: var(--main-node);
+  border-width: 1px;
+  border-left-width: var(--size-1);
+  border-radius: 5px;
+  padding: 1em;
+  max-width: 750px !important;
+  background-color: transparent;
+}
+
+.markdown-source-view.mod-cm6.is-live-preview .HyperMD-quote span.cm-quote {
+  color: var(--main-text);
+}
+
 /*
 *..........................14. Kanban */
 .kanban ul {
   display: flex;
   flex-direction: row;
-  border: 2px solid var(--secondary-background);
+  border: var(--size-0-5) solid var(--secondary-background);
   background-color: var(--secondary-background-low-opacity);
   padding: 1rem;
   border-radius: 1rem;
@@ -1550,7 +1644,7 @@ Credit to github.com/nothingislost for the inspiration of the "subway line list"
   display: block;
   background: var(--secondary-background);
   margin-bottom: 5px;
-  padding: 10px;
+  padding: var(--size-2-5);
   border: 1px solid black;
   border-radius: 5px;
 }
@@ -1634,7 +1728,7 @@ img[alt~='type-portrait'] {
 }
 
 img[alt~='radius-small'] {
-  border-radius: 15px;
+  border-radius: var(--size-3-5);
 }
 
 img[alt~='radius-medium'] {
@@ -1650,7 +1744,7 @@ img[alt~='radius-circle'] {
 }
 
 img[alt~='border-small'] {
-  border: 2px solid var(--main-node);
+  border: var(--size-0-5) solid var(--main-node);
 }
 
 img[alt~='border-medium'] {
@@ -1658,7 +1752,7 @@ img[alt~='border-medium'] {
 }
 
 img[alt~='border-large'] {
-  border: 10px solid var(--main-node);
+  border: var(--size-2-5) solid var(--main-node);
 }
 
 /*
@@ -1770,3 +1864,99 @@ kbd {
   background: var(--secondary-background);
   background: #cfcfcf;
 }
+
+/* Icon Shortcode */
+img.isc-icon.isc-luc {
+  margin: 0;
+}
+
+/* Obsidian Charts */
+:root {
+  --chart-color-1: var(--accent-1);
+  --chart-color-2: var(--accent-2);
+  --chart-color-3: var(--accent-3);
+  --chart-color-4: var(--accent-4);
+  --chart-color-5: var(--accent-5);
+  --chart-color-6: var(--accent-6);
+}
+
+/* Dataview */
+.dataview.table-view-table > thead > tr > th {
+  font-size: var(--font-size-sm);
+  letter-spacing: 0.08em;
+  text-indent: 0.5em;
+}
+
+.dataview.table-view-table > tbody > tr > td {
+  max-width: 18em;
+  min-width: 8em;
+  width: fit-content;
+  padding: var(--size-2);
+  font-size: var(--font-size-sm);
+}
+
+.dataview .dataview-result-list-root-ul {
+  /* Need to use !important because Dataview originally uses !important */
+  padding-left: var(--size-6) !important;
+}
+
+/* @settings
+
+name: Spectrum Style Settings
+id: spectrum
+settings:
+  -
+    id: main-color
+    title: Main Colors
+    type: heading
+    level: 2
+  -
+    id: main-node
+    title: Main Node
+    type: variable-color
+    format: rgb
+    default: rgb(255, 190, 0)
+  -
+    id: accent-color
+    title: Accent Colors
+    type: heading
+    level: 2
+  -
+    id: accent-1
+    title: Accent 1
+    type: variable-color
+    format: rgb
+    default: rgb(245, 112, 76)
+  -
+    id: accent-2
+    title: Accent 2
+    type: variable-color
+    format: rgb
+    default: rgb(245, 161, 76)
+  -
+    id: accent-3
+    title: Accent 3
+    type: variable-color
+    format: rgb
+    default: rgb(237, 228, 130)
+  -
+    id: accent-4
+    title: Accent 4
+    type: variable-color
+    format: rgb
+    default: rgb(170, 222, 98)
+  -
+    id: accent-5
+    title: Accent 5
+    type: variable-color
+    format: rgb
+    default: rgb(98, 222, 172)
+  -
+    id: accent-6
+    title: Accent 6
+    type: variable-color
+    format: rgb
+    default: rgb(98, 183, 222)
+  -
+
+*/
