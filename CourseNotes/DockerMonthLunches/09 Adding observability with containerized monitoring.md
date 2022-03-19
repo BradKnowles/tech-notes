@@ -1,5 +1,5 @@
 ---
-tags: [docker,diamol,100DaysOfCode]
+tags: [docker/monitoring,diamol,100DaysOfCode]
 ---
 
 source: [[Docker in a Month of Lunches]]
